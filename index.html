@@ -3,1096 +3,178 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stream Cylon - Premium Movie Streaming</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Watch Now</title>
     <style>
-        :root {
-            --primary: #ff3860;
-            --secondary: #8c4bff;
-            --dark: #0a0a0a;
-            --darker: #050505;
-            --light: #f5f5f5;
-            --gray: #222222;
-            --card-bg: rgba(30, 30, 30, 0.7);
-            --transition: all 0.3s ease;
-            --ad-primary: #4a6cf7;
-        }
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, var(--darker), var(--dark));
-            color: var(--light);
-            line-height: 1.6;
-            overflow-x: hidden;
-            min-height: 100vh;
-            background-attachment: fixed;
-            background-size: cover;
-            position: relative;
-        }
-        
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, rgba(40, 40, 40, 0.1) 0%, rgba(10, 10, 10, 0.95) 70%);
-            z-index: -1;
-        }
-        
-        header {
-            background: linear-gradient(to right, rgba(20, 20, 20, 0.95), rgba(40, 10, 30, 0.95));
-            padding: 15px 5%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .logo h1 {
-            font-size: 2.2rem;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            font-weight: 800;
-            letter-spacing: 1px;
-        }
-        
-        .logo i {
-            color: var(--primary);
-            font-size: 2rem;
-        }
-        
-        nav {
-            background: rgba(15, 15, 15, 0.9);
-            padding: 10px 5%;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            position: sticky;
-            top: 70px;
-            z-index: 99;
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        
-        nav a {
-            color: var(--light);
-            text-decoration: none;
-            padding: 8px 25px;
-            border-radius: 20px;
-            transition: var(--transition);
-            background: rgba(255, 255, 255, 0.05);
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        nav a:hover, nav a.active {
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(139, 0, 139, 0.4);
-        }
-        
-        .hero {
-            text-align: center;
-            padding: 60px 5% 40px;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
-            background-size: cover;
-            background-position: center;
-            margin: 0 0 30px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .hero h2 {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        }
-        
-        .hero p {
-            font-size: 1.3rem;
-            max-width: 700px;
-            margin: 0 auto 30px;
-            color: rgba(255, 255, 255, 0.8);
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f);
             color: white;
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: 600;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-            box-shadow: 0 5px 15px rgba(139, 0, 139, 0.3);
-        }
-        
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(139, 0, 139, 0.4);
-        }
-        
-        .categories {
-            padding: 20px 5%;
-            background: rgba(15, 15, 15, 0.8);
-            margin-bottom: 30px;
-        }
-        
-        .categories-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .category-card {
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 20px 10px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            transition: var(--transition);
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        
-        .category-card:hover {
-            background: linear-gradient(45deg, rgba(255, 56, 96, 0.2), rgba(140, 75, 255, 0.2));
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-        
-        .category-card i {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            color: var(--primary);
-        }
-        
-        .category-card h3 {
-            font-size: 1.1rem;
-            color: var(--light);
+            padding: 20px;
         }
         
         .container {
-            padding: 0 5% 40px;
-        }
-        
-        .section-title {
-            font-size: 1.8rem;
-            margin-bottom: 25px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .movies-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-            margin-bottom: 50px;
-        }
-        
-        .movie-card {
-            background: var(--card-bg);
-            border-radius: 10px;
-            overflow: hidden;
-            transition: var(--transition);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-            position: relative;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        
-        .movie-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(139, 0, 139, 0.3);
-            border-color: rgba(255, 56, 96, 0.3);
-        }
-        
-        .movie-thumb {
-            position: relative;
-            height: 200px;
-            overflow: hidden;
-            background: #111;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .movie-thumb iframe {
+            max-width: 1200px;
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            text-align: center;
         }
         
-        .play-btn {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 60px;
-            height: 60px;
-            background: rgba(255, 56, 96, 0.8);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: var(--transition);
-            z-index: 10;
+        header {
+            margin-bottom: 40px;
         }
         
-        .movie-card:hover .play-btn {
-            opacity: 1;
-        }
-        
-        .play-btn i {
-            color: white;
-            font-size: 1.5rem;
-        }
-        
-        .movie-info {
-            padding: 20px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .movie-info h3 {
-            font-size: 1.2rem;
+        h1 {
+            font-size: 2.5rem;
             margin-bottom: 10px;
         }
         
-        .movie-meta {
+        .ad-banner {
+            width: 100%;
+            margin: 20px 0;
             display: flex;
-            justify-content: space-between;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.85rem;
-            margin-bottom: 15px;
+            justify-content: center;
+            align-items: center;
         }
         
-        .rating {
-            color: gold;
-            font-weight: bold;
-        }
-        
-        .movie-desc {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-            flex-grow: 1;
-        }
-        
-        .movie-actions {
-            display: flex;
-            justify-content: space-between;
+        .ad-banner.vertical {
+            width: 300px;
+            margin: 0 auto;
         }
         
         .watch-btn {
-            padding: 8px 20px;
-            background: var(--primary);
+            background: linear-gradient(to right, #fdbb2d, #b21f1f);
             color: white;
-            text-decoration: none;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .watch-btn::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.1);
-            transition: all 0.5s ease;
-        }
-        
-        .watch-btn:hover::before {
-            left: 100%;
+            border: none;
+            padding: 20px 60px;
+            font-size: 1.8rem;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 40px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
         
         .watch-btn:hover {
-            background: #ff1e4b;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
         }
         
-        /* Ad Banner Styling */
-        .ad-banner {
-            display: flex;
-            justify-content: center;
-            margin: 30px 0;
-            padding: 15px;
-            background: rgba(20, 20, 20, 0.8);
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        .watch-btn:active {
+            transform: translateY(1px);
         }
         
-        .ad-container {
-            position: relative;
-            background: rgba(30, 30, 30, 0.5);
-            border-radius: 8px;
-            overflow: hidden;
+        .counter {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #ccc;
         }
         
-        .ad-placeholder {
-            width: 300px;
-            height: 250px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(45deg, #1a1a2e, #16213e);
-            color: rgba(255, 255, 255, 0.5);
-            font-style: italic;
-            position: relative;
-        }
-        
-        .ad-placeholder::before {
-            content: "Advertisement";
-            position: absolute;
-            top: 10px;
+        .footer {
+            margin-top: 40px;
             font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.4);
+            color: #aaa;
         }
         
-        /* Ad Modal Styling */
-        .ad-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .ad-modal-content {
-            background: rgba(20, 20, 30, 0.95);
-            border-radius: 15px;
-            width: 90%;
-            max-width: 800px;
-            max-height: 90vh;
-            overflow: hidden;
-            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-        }
-        
-        .ad-modal-header {
-            padding: 20px;
-            background: linear-gradient(90deg, var(--ad-primary), #3a0ca3);
+        .content-area {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            margin: 40px 0;
         }
         
-        .ad-modal-header h3 {
-            font-size: 1.5rem;
-            color: white;
-        }
-        
-        .close-ad {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        
-        .close-ad:hover {
-            transform: scale(1.2);
-        }
-        
-        .ad-modal-body {
-            padding: 30px;
-            text-align: center;
-            background: rgba(10, 10, 20, 0.8);
-        }
-        
-        .ad-modal-body p {
-            font-size: 1.1rem;
-            margin-bottom: 25px;
-            color: rgba(255, 255, 255, 0.8);
-        }
-        
-        .ad-modal-footer {
+        .main-content {
+            flex: 1;
             padding: 20px;
-            display: flex;
-            justify-content: center;
-            background: rgba(15, 15, 25, 0.9);
         }
         
-        .ad-proceed-btn {
-            padding: 12px 40px;
-            background: linear-gradient(45deg, var(--ad-primary), #4361ee);
-            color: white;
-            border: none;
-            border-radius: 30px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: 0 5px 15px rgba(74, 108, 247, 0.4);
+        .sidebar {
+            width: 300px;
+            padding: 20px;
         }
         
-        .ad-proceed-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(74, 108, 247, 0.6);
-        }
-        
-        .ad-timer {
-            margin-top: 15px;
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.6);
-        }
-        
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 50px 0;
-            padding: 0 5%;
-        }
-        
-        .feature-card {
-            background: var(--card-bg);
-            padding: 30px;
+        .social-bar {
+            margin-top: 30px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
-            text-align: center;
-            transition: var(--transition);
-            border: 1px solid rgba(255, 255, 255, 0.05);
         }
         
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-            border-color: var(--secondary);
-        }
-        
-        .feature-card i {
-            font-size: 3rem;
-            color: var(--secondary);
-            margin-bottom: 20px;
-        }
-        
-        .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--primary);
-        }
-        
-        .feature-card p {
-            color: rgba(255, 255, 255, 0.7);
-        }
-        
-        footer {
-            background: rgba(10, 10, 10, 0.95);
-            padding: 40px 5% 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            margin-top: 50px;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-bottom: 30px;
-        }
-        
-        .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            color: var(--primary);
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-        
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .footer-links a:hover {
-            color: var(--primary);
-            transform: translateX(5px);
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 15px;
-        }
-        
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 50%;
-            color: var(--light);
-            transition: var(--transition);
-        }
-        
-        .social-links a:hover {
-            background: var(--primary);
-            transform: translateY(-3px);
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.9rem;
-        }
-        
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background: var(--primary);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: var(--transition);
-            opacity: 0.8;
-            z-index: 99;
-            box-shadow: 0 5px 15px rgba(255, 56, 96, 0.3);
-        }
-        
-        .back-to-top:hover {
-            opacity: 1;
-            transform: translateY(-5px);
-        }
-        
-        /* Responsive Design */
         @media (max-width: 768px) {
-            header {
-                padding: 15px 5%;
+            .content-area {
+                flex-direction: column;
             }
             
-            .logo h1 {
-                font-size: 1.8rem;
-            }
-            
-            nav {
-                top: 70px;
-                overflow-x: auto;
-                justify-content: flex-start;
-                padding: 10px 5%;
-            }
-            
-            nav a {
-                flex-shrink: 0;
-                padding: 8px 15px;
-            }
-            
-            .hero h2 {
-                font-size: 2.2rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            .categories-grid {
-                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            }
-            
-            .ad-modal-content {
-                width: 95%;
-            }
-            
-            .movie-thumb {
-                height: 180px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .hero {
-                padding: 40px 5% 30px;
-            }
-            
-            .ad-modal-body {
-                padding: 20px 15px;
-            }
-            
-            .categories-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 10px;
-            }
-            
-            .category-card {
-                padding: 15px 5px;
-            }
-            
-            .category-card i {
-                font-size: 2rem;
-            }
-            
-            .category-card h3 {
-                font-size: 0.9rem;
-            }
-            
-            .movie-thumb {
-                height: 160px;
-            }
-            
-            .movie-info {
-                padding: 15px;
-            }
-            
-            .movie-info h3 {
-                font-size: 1.1rem;
-            }
-            
-            .movie-desc {
-                font-size: 0.85rem;
-            }
-            
-            .section-title {
-                font-size: 1.5rem;
+            .sidebar {
+                width: 100%;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header with navigation -->
-    <header>
-        <div class="logo">
-            <i class="fas fa-play-circle"></i>
-            <h1>Stream Cylon</h1>
-        </div>
-    </header>
-    
-    <!-- Navigation -->
-    <nav>
-        <a href="#" class="active"><i class="fas fa-home"></i> Home</a>
-        <a href="#action"><i class="fas fa-fire"></i> Action</a>
-        <a href="#comedy"><i class="fas fa-laugh"></i> Comedy</a>
-        <a href="#horror"><i class="fas fa-ghost"></i> Horror</a>
-        <a href="#drama"><i class="fas fa-theater-masks"></i> Drama</a>
-        <a href="#scifi"><i class="fas fa-robot"></i> Sci-Fi</a>
-        <a href="#fantasy"><i class="fas fa-dragon"></i> Fantasy</a>
-    </nav>
-    
-    <!-- Hero section -->
-    <section class="hero">
-        <h2>Unlimited Movies, Anytime, Anywhere</h2>
-        <p>Stream thousands of movies and TV shows in stunning HD quality. Support our service by viewing ads to access content.</p>
-        <a href="#" class="btn">Start Watching <i class="fas fa-play"></i></a>
-    </section>
-    
-    <!-- Categories Section -->
-    <section class="categories">
-        <div class="categories-grid">
-            <a href="#action" class="category-card">
-                <i class="fas fa-fire"></i>
-                <h3>Action</h3>
-            </a>
-            <a href="#comedy" class="category-card">
-                <i class="fas fa-laugh"></i>
-                <h3>Comedy</h3>
-            </a>
-            <a href="#horror" class="category-card">
-                <i class="fas fa-ghost"></i>
-                <h3>Horror</h3>
-            </a>
-            <a href="#drama" class="category-card">
-                <i class="fas fa-theater-masks"></i>
-                <h3>Drama</h3>
-            </a>
-            <a href="#scifi" class="category-card">
-                <i class="fas fa-robot"></i>
-                <h3>Sci-Fi</h3>
-            </a>
-            <a href="#fantasy" class="category-card">
-                <i class="fas fa-dragon"></i>
-                <h3>Fantasy</h3>
-            </a>
-        </div>
-    </section>
-    
-    <!-- Top Banner Ad -->
-    <div class="ad-banner">
-        <div class="ad-container">
-            <div class="ad-placeholder">
-                <div style="width: 300px; height: 250px;">
-                    <script type="text/javascript">
-                        atOptions = {
-                            'key': '32f1ebe53039fb43a11d7b4676e231a0',
-                            'format': 'iframe',
-                            'height': 250,
-                            'width': 300,
-                            'params': {}
-                        };
-                    </script>
-                    <script type="text/javascript" src="//revealedcarry.com/32f1ebe53039fb43a11d7b4676e231a0/invoke.js"></script>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Main content -->
     <div class="container">
-        <!-- Featured Movies -->
-        <h2 class="section-title"><i class="fas fa-crown"></i> Featured Movies</h2>
-        <div class="movies-grid">
-            <!-- Movie 1 -->
-            <div class="movie-card">
-                <div class="movie-thumb">
-                    <div class="play-btn">
-                        <i class="fas fa-play"></i>
-                    </div>
-                </div>
-                <div class="movie-info">
-                    <h3>Fast Action Movie</h3>
-                    <div class="movie-meta">
-                        <span>2023</span>
-                        <span class="rating"><i class="fas fa-star"></i> 8.2</span>
-                        <span>2h 15m</span>
-                    </div>
-                    <p class="movie-desc">A high-octane thriller with breathtaking stunts and non-stop action sequences.</p>
-                    <div class="movie-actions">
-                        <a href="#" class="watch-btn" data-movie="https://rumble.com/embed/v6tj1dz/?pub=4m9d7t">Watch Now</a>
-                        <a href="#"><i class="far fa-bookmark"></i></a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Movie 2 -->
-            <div class="movie-card">
-                <div class="movie-thumb">
-                    <div class="play-btn">
-                        <i class="fas fa-play"></i>
-                    </div>
-                </div>
-                <div class="movie-info">
-                    <h3>Explosion Galore</h3>
-                    <div class="movie-meta">
-                        <span>2024</span>
-                        <span class="rating"><i class="fas fa-star"></i> 7.9</span>
-                        <span>1h 58m</span>
-                    </div>
-                    <p class="movie-desc">A team of specialists must prevent a series of catastrophic explosions in major cities.</p>
-                    <div class="movie-actions">
-                        <a href="#" class="watch-btn" data-movie="https://rumble.com/embed/v4z0x1k/?pub=4">Watch Now</a>
-                        <a href="#"><i class="far fa-bookmark"></i></a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Movie 3 -->
-            <div class="movie-card">
-                <div class="movie-thumb">
-                    <div class="play-btn">
-                        <i class="fas fa-play"></i>
-                    </div>
-                </div>
-                <div class="movie-info">
-                    <h3>Laugh Riot</h3>
-                    <div class="movie-meta">
-                        <span>2023</span>
-                        <span class="rating"><i class="fas fa-star"></i> 7.5</span>
-                        <span>1h 45m</span>
-                    </div>
-                    <p class="movie-desc">A hilarious comedy about a group of friends who start a business with chaotic results.</p>
-                    <div class="movie-actions">
-                        <a href="#" class="watch-btn" data-movie="https://rumble.com/embed/v4z0x7g/?pub=4">Watch Now</a>
-                        <a href="#"><i class="far fa-bookmark"></i></a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Movie 4 -->
-            <div class="movie-card">
-                <div class="movie-thumb">
-                    <div class="play-btn">
-                        <i class="fas fa-play"></i>
-                    </div>
-                </div>
-                <div class="movie-info">
-                    <h3>Haunted Night</h3>
-                    <div class="movie-meta">
-                        <span>2024</span>
-                        <span class="rating"><i class="fas fa-star"></i> 8.1</span>
-                        <span>2h 5m</span>
-                    </div>
-                    <p class="movie-desc">A family moves into a mansion only to discover it's haunted by vengeful spirits.</p>
-                    <div class="movie-actions">
-                        <a href="#" class="watch-btn" data-movie="https://rumble.com/embed/v4z0x9u/?pub=4">Watch Now</a>
-                        <a href="#"><i class="far fa-bookmark"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <header>
+            <h1>Watch Premium Content</h1>
+            <p>Click the button below to access exclusive content</p>
+        </header>
         
-        <!-- Action Movies -->
-        <h2 class="section-title" id="action"><i class="fas fa-fire"></i> Action Movies</h2>
-        <div class="movies-grid">
-            <!-- Movie 1 -->
-            <div class="movie-card">
-                <div class="movie-thumb">
-                    <div class="play-btn">
-                        <i class="fas fa-play"></i>
-                    </div>
-                </div>
-                <div class="movie-info">
-                    <h3>Urban Chase</h3>
-                    <div class="movie-meta">
-                        <span>2023</span>
-                        <span class="rating"><i class="fas fa-star"></i> 7.8</span>
-                        <span>2h 2m</span>
-                    </div>
-                    <p class="movie-desc">A former spy is pulled back into the game when his city is threatened by terrorists.</p>
-                    <div class="movie-actions">
-                        <a href="#" class="watch-btn" data-movie="https://rumble.com/embed/v4z0xbc/?pub=4">Watch Now</a>
-                        <a href="#"><i class="far fa-bookmark"></i></a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Movie 2 -->
-            <div class="movie-card">
-                <div class="movie-thumb">
-                    <div class="play-btn">
-                        <i class="fas fa-play"></i>
-                    </div>
-                </div>
-                <div class="movie-info">
-                    <h3>Desert Warriors</h3>
-                    <div class="movie-meta">
-                        <span>2024</span>
-                        <span class="rating"><i class="fas fa-star"></i> 8.0</span>
-                        <span>2h 12m</span>
-                    </div>
-                    <p class="movie-desc">A special forces unit must survive in hostile territory against overwhelming odds.</p>
-                    <div class="movie-actions">
-                        <a href="#" class="watch-btn" data-movie="https://rumble.com/embed/v4z0xdc/?pub=4">Watch Now</a>
-                        <a href="#"><i class="far fa-bookmark"></i></a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Movie 3 -->
-            <div class="movie-card">
-                <div class="movie-thumb">
-                    <div class="play-btn">
-                        <i class="fas fa-play"></i>
-                    </div>
-                </div>
-                <div class="movie-info">
-                    <h3>Skyfall</h3>
-                    <div class="movie-meta">
-                        <span>2024</span>
-                        <span class="rating"><i class="fas fa-star"></i> 8.3</span>
-                        <span>2h 23m</span>
-                    </div>
-                    <p class="movie-desc">Aerial combat specialists face their greatest challenge in this high-flying action thriller.</p>
-                    <div class="movie-actions">
-                        <a href="#" class="watch-btn" data-movie="https://rumble.com/embed/v4z0xf4/?pub=4">Watch Now</a>
-                        <a href="#"><i class="far fa-bookmark"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Middle Banner Ad -->
+        <!-- Top Banner Ad -->
         <div class="ad-banner">
-            <div class="ad-container">
-                <div class="ad-placeholder">
-                    <div style="width: 300px; height: 250px;">
+            <div id="top-banner-ad">
+                <script type="text/javascript">
+                    atOptions = {
+                        'key' : '94644d7257d5741ea281017b7ca1cfdf',
+                        'format' : 'iframe',
+                        'height' : 90,
+                        'width' : 728,
+                        'params' : {}
+                    };
+                </script>
+                <script type="text/javascript" src="//www.highperformanceformat.com/94644d7257d5741ea281017b7ca1cfdf/invoke.js"></script>
+            </div>
+        </div>
+        
+        <div class="content-area">
+            <div class="main-content">
+                <button class="watch-btn" id="watchNowBtn">WATCH NOW</button>
+                
+                <div class="counter">
+                    Clicks: <span id="clickCount">0</span>
+                </div>
+                
+                <div class="footer">
+                    <p>By clicking "Watch Now", you agree to our Terms of Service and Privacy Policy.</p>
+                </div>
+                
+                <!-- Social Bar -->
+                <div class="social-bar">
+                    <div id="social-bar-ad">
+                        <script type='text/javascript' src='//pl26849387.revenuecpmgate.com/a5/15/f9/a515f96363c0d2d145bd3ebd0ca5bc27.js'></script>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sidebar">
+                <!-- Sidebar Banner Ad -->
+                <div class="ad-banner vertical">
+                    <div id="sidebar-ad">
                         <script type="text/javascript">
                             atOptions = {
-                                'key': '32f1ebe53039fb43a11d7b4676e231a0',
-                                'format': 'iframe',
-                                'height': 250,
-                                'width': 300,
-                                'params': {}
+                                'key' : '32f1ebe53039fb43a11d7b4676e231a0',
+                                'format' : 'iframe',
+                                'height' : 250,
+                                'width' : 300,
+                                'params' : {}
                             };
                         </script>
-                        <script type="text/javascript" src="//revealedcarry.com/32f1ebe53039fb43a11d7b4676e231a0/invoke.js"></script>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Comedy Movies -->
-        <h2 class="section-title" id="comedy"><i class="fas fa-laugh"></i> Comedy Movies</h2>
-        <div class="movies-grid">
-            <!-- Movie 1 -->
-            <div class="movie-card">
-                <div class="movie-thumb">
-                    <div class="play-btn">
-                        <i class="fas fa-play"></i>
-                    </div>
-                </div>
-                <div class="movie-info">
-                    <h3>Office Chaos</h3>
-                    <div class="movie-meta">
-                        <span>2023</span>
-                        <span class="rating"><i class="fas fa-star"></i> 7.2</span>
-                        <span>1h 38m</span>
-                    </div>
-                    <p class="movie-desc">A day in the life of an eccentric office where nothing goes according to plan.</p>
-                    <div class="movie-actions">
-                        <a href="#" class="watch-btn" data-movie="https://rumble.com/embed/v4z0xhg/?pub=4">Watch Now</a>
-                        <a href="#"><i class="far fa-bookmark"></i></a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Movie 2 -->
-            <div class="movie-card">
-                <div class="movie-thumb">
-                    <div class="play-btn">
-                        <i class="fas fa-play"></i>
-                    </div>
-                </div>
-                <div class="movie-info">
-                    <h3>Vacation Fiasco</h3>
-                    <div class="movie-meta">
-                        <span>2023</span>
-                        <span class="rating"><i class="fas fa-star"></i> 7.4</span>
-                        <span>1h 52m</span>
-                    </div>
-                    <p class="movie-desc">A family vacation goes hilariously wrong in this laugh-out-loud comedy adventure.</p>
-                    <div class="movie-actions">
-                        <a href="#" class="watch-btn" data-movie="https://rumble.com/embed/v4z0xkk/?pub=4">Watch Now</a>
-                        <a href="#"><i class="far fa-bookmark"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Horror Movies -->
-        <h2 class="section-title" id="horror"><i class="fas fa-ghost"></i> Horror Movies</h2>
-        <div class="movies-grid">
-            <!-- Movie 1 -->
-            <div class="movie-card">
-                <div class="movie-thumb">
-                    <div class="play-btn">
-                        <i class="fas fa-play"></i>
-                    </div>
-                </div>
-                <div class="movie-info">
-                    <h3>Shadow Forest</h3>
-                    <div class="movie-meta">
-                        <span>2024</span>
-                        <span class="rating"><i class="fas fa-star"></i> 7.9</span>
-                        <span>1h 52m</span>
-                    </div>
-                    <p class="movie-desc">Campers in a remote forest discover they're not alone and must survive the night.</p>
-                    <div class="movie-actions">
-                        <a href="#" class="watch-btn" data-movie="https://rumble.com/embed/v4z0xng/?pub=4">Watch Now</a>
-                        <a href="#"><i class="far fa-bookmark"></i></a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Movie 2 -->
-            <div class="movie-card">
-                <div class="movie-thumb">
-                    <div class="play-btn">
-                        <i class="fas fa-play"></i>
-                    </div>
-                </div>
-                <div class="movie-info">
-                    <h3>Midnight Terror</h3>
-                    <div class="movie-meta">
-                        <span>2024</span>
-                        <span class="rating"><i class="fas fa-star"></i> 8.2</span>
-                        <span>1h 58m</span>
-                    </div>
-                    <p class="movie-desc">A supernatural force terrorizes a small town in this chilling horror masterpiece.</p>
-                    <div class="movie-actions">
-                        <a href="#" class="watch-btn" data-movie="https://rumble.com/embed/v4z0xr0/?pub=4">Watch Now</a>
-                        <a href="#"><i class="far fa-bookmark"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Sci-Fi Movies -->
-        <h2 class="section-title" id="scifi"><i class="fas fa-robot"></i> Sci-Fi Movies</h2>
-        <div class="movies-grid">
-            <!-- Movie 1 -->
-            <div class="movie-card">
-                <div class="movie-thumb">
-                    <div class="play-btn">
-                        <i class="fas fa-play"></i>
-                    </div>
-                </div>
-                <div class="movie-info">
-                    <h3>Cosmic Journey</h3>
-                    <div class="movie-meta">
-                        <span>2024</span>
-                        <span class="rating"><i class="fas fa-star"></i> 8.5</span>
-                        <span>2h 18m</span>
-                    </div>
-                    <p class="movie-desc">Astronauts on a deep space mission encounter an ancient alien civilization.</p>
-                    <div class="movie-actions">
-                        <a href="#" class="watch-btn" data-movie="https://rumble.com/embed/v4z0xsw/?pub=4">Watch Now</a>
-                        <a href="#"><i class="far fa-bookmark"></i></a>
+                        <script type="text/javascript" src="//www.highperformanceformat.com/32f1ebe53039fb43a11d7b4676e231a0/invoke.js"></script>
                     </div>
                 </div>
             </div>
@@ -1100,253 +182,43 @@
         
         <!-- Bottom Banner Ad -->
         <div class="ad-banner">
-            <div class="ad-container">
-                <div class="ad-placeholder">
-                    <div style="width: 300px; height: 250px;">
-                        <script type="text/javascript">
-                            atOptions = {
-                                'key': '32f1ebe53039fb43a11d7b4676e231a0',
-                                'format': 'iframe',
-                                'height': 250,
-                                'width': 300,
-                                'params': {}
-                            };
-                        </script>
-                        <script type="text/javascript" src="//revealedcarry.com/32f1ebe53039fb43a11d7b4676e231a0/invoke.js"></script>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Features section -->
-        <div class="features">
-            <div class="feature-card">
-                <i class="fas fa-play-circle"></i>
-                <h3>Unlimited Streaming</h3>
-                <p>Watch thousands of movies and TV shows with no limits. Stream anytime, anywhere.</p>
-            </div>
-            
-            <div class="feature-card">
-                <i class="fas fa-tv"></i>
-                <h3>HD Quality</h3>
-                <p>Experience movies in stunning HD and 4K resolution with immersive sound quality.</p>
-            </div>
-            
-            <div class="feature-card">
-                <i class="fas fa-mobile-alt"></i>
-                <h3>Watch Anywhere</h3>
-                <p>Stream on your phone, tablet, laptop, TV, and other devices with our dedicated apps.</p>
+            <div id="bottom-banner-ad">
+                <script type="text/javascript">
+                    atOptions = {
+                        'key' : '94644d7257d5741ea281017b7ca1cfdf',
+                        'format' : 'iframe',
+                        'height' : 90,
+                        'width' : 728,
+                        'params' : {}
+                    };
+                </script>
+                <script type="text/javascript" src="//www.highperformanceformat.com/94644d7257d5741ea281017b7ca1cfdf/invoke.js"></script>
             </div>
         </div>
     </div>
-    
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-column">
-                <h3>Stream Cylon</h3>
-                <p>Your ultimate destination for premium movie streaming. Thousands of titles at your fingertips.</p>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                </div>
-            </div>
-            
-            <div class="footer-column">
-                <h3>Navigation</h3>
-                <ul class="footer-links">
-                    <li><a href="#"><i class="fas fa-chevron-right"></i> Home</a></li>
-                    <li><a href="#"><i class="fas fa-chevron-right"></i> Movies</a></li>
-                    <li><a href="#"><i class="fas fa-chevron-right"></i> TV Shows</a></li>
-                    <li><a href="#"><i class="fas fa-chevron-right"></i> New Releases</a></li>
-                    <li><a href="#"><i class="fas fa-chevron-right"></i> My List</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-column">
-                <h3>Genres</h3>
-                <ul class="footer-links">
-                    <li><a href="#"><i class="fas fa-chevron-right"></i> Action</a></li>
-                    <li><a href="#"><i class="fas fa-chevron-right"></i> Comedy</a></li>
-                    <li><a href="#"><i class="fas fa-chevron-right"></i> Horror</a></li>
-                    <li><a href="#"><i class="fas fa-chevron-right"></i> Drama</a></li>
-                    <li><a href="#"><i class="fas fa-chevron-right"></i> Sci-Fi</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-column">
-                <h3>Support</h3>
-                <ul class="footer-links">
-                    <li><a href="#"><i class="fas fa-chevron-right"></i> Help Center</a></li>
-                    <li><a href="#"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
-                    <li><a href="#"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
-                    <li><a href="#"><i class="fas fa-chevron-right"></i> Terms of Service</a></li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="copyright">
-            <p>&copy; 2025 Stream Cylon. All rights reserved. Powered by Rumble.</p>
-        </div>
-    </footer>
-    
-    <!-- Ad Modal -->
-    <div class="ad-modal" id="adModal">
-        <div class="ad-modal-content">
-            <div class="ad-modal-header">
-                <h3>Support Our Service</h3>
-                <button class="close-ad">&times;</button>
-            </div>
-            <div class="ad-modal-body">
-                <p>To watch this movie, please view our sponsor's advertisement. This helps us provide free content.</p>
-                <p>After viewing the ad, you'll be redirected back to watch your selected movie.</p>
-                <div class="ad-timer">Ad will open in <span id="countdown">5</span> seconds</div>
-            </div>
-            <div class="ad-modal-footer">
-                <button class="ad-proceed-btn" id="proceedBtn">View Advertisement Now</button>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Back to top button -->
-    <div class="back-to-top">
-        <i class="fas fa-arrow-up"></i>
-    </div>
-    
+
     <script>
-        // Ad links
-        const adLinks = [
-            "https://revealedcarry.com/f84hgt6i?key=eba0ae0ef03ca94e6443817366ab7f18",
-            "https://revealedcarry.com/xakk7msd17?key=dee3f3b9b799e931490c72e8ca51b533"
-        ];
-        
-        // Variables for ad flow
-        let currentMovieUrl = "";
-        let countdownInterval;
-        let adWindow = null;
-        
-        // DOM elements
-        const adModal = document.getElementById('adModal');
-        const countdownEl = document.getElementById('countdown');
-        const proceedBtn = document.getElementById('proceedBtn');
-        const closeAdBtn = document.querySelector('.close-ad');
-        
-        // Back to top functionality
-        document.querySelector('.back-to-top').addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-        
-        // Show/hide back to top button based on scroll position
-        window.addEventListener('scroll', () => {
-            const backToTop = document.querySelector('.back-to-top');
-            if (window.scrollY > 500) {
-                backToTop.style.display = 'flex';
-            } else {
-                backToTop.style.display = 'none';
-            }
-        });
-        
-        // Add active class to navigation links when clicked
-        document.querySelectorAll('nav a').forEach(link => {
-            link.addEventListener('click', function() {
-                document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
-        
-        // Watch Now button functionality
-        document.querySelectorAll('.watch-btn').forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.preventDefault();
-                currentMovieUrl = this.getAttribute('data-movie');
-                
-                // Show the ad modal
-                adModal.style.display = 'flex';
-                
-                // Start countdown
-                let count = 5;
-                countdownEl.textContent = count;
-                
-                clearInterval(countdownInterval);
-                countdownInterval = setInterval(() => {
-                    count--;
-                    countdownEl.textContent = count;
-                    
-                    if (count <= 0) {
-                        clearInterval(countdownInterval);
-                        proceedToAd();
-                    }
-                }, 1000);
-            });
-        });
-        
-        // Proceed to ad
-        function proceedToAd() {
-            clearInterval(countdownInterval);
-            
-            // Select a random ad
-            const randomAd = adLinks[Math.floor(Math.random() * adLinks.length)];
-            
-            // Open ad in new tab
-            adWindow = window.open(randomAd, '_blank');
-            
-            // Close modal
-            adModal.style.display = 'none';
-            
-            // Check if user returns to the site
-            const checkAdClosed = setInterval(() => {
-                if (adWindow && adWindow.closed) {
-                    clearInterval(checkAdClosed);
-                    // Redirect to movie after ad is closed
-                    window.location.href = currentMovieUrl;
-                }
-            }, 500);
-        }
-        
-        // Proceed button click
-        proceedBtn.addEventListener('click', proceedToAd);
-        
-        // Close ad modal
-        closeAdBtn.addEventListener('click', () => {
-            adModal.style.display = 'none';
-            clearInterval(countdownInterval);
-        });
-        
-        // Close modal if clicked outside
-        window.addEventListener('click', (e) => {
-            if (e.target === adModal) {
-                adModal.style.display = 'none';
-                clearInterval(countdownInterval);
-            }
-        });
-        
-        // Load Rumble thumbnails dynamically
         document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.watch-btn').forEach(btn => {
-                const embedUrl = btn.getAttribute('data-movie');
-                if (embedUrl) {
-                    // Extract video ID from URL
-                    const videoId = embedUrl.split('/')[4];
-                    
-                    // Get the movie thumb container
-                    const thumbContainer = btn.closest('.movie-card').querySelector('.movie-thumb');
-                    
-                    // Create the thumbnail iframe
-                    const thumbnail = document.createElement('iframe');
-                    thumbnail.src = `https://rumble.com/embed/${videoId}/?pub=4&thumbnail=1`;
-                    thumbnail.allow = 'autoplay';
-                    thumbnail.style.border = 'none';
-                    thumbnail.style.width = '100%';
-                    thumbnail.style.height = '100%';
-                    
-                    // Insert as first child
-                    thumbContainer.insertBefore(thumbnail, thumbContainer.firstChild);
-                }
+            const watchNowBtn = document.getElementById('watchNowBtn');
+            const clickCountElement = document.getElementById('clickCount');
+            let clickCount = 0;
+            
+            // Load click count from localStorage if available
+            if (localStorage.getItem('watchNowClicks')) {
+                clickCount = parseInt(localStorage.getItem('watchNowClicks'));
+                clickCountElement.textContent = clickCount;
+            }
+            
+            watchNowBtn.addEventListener('click', function() {
+                // Increment click counter
+                clickCount++;
+                clickCountElement.textContent = clickCount;
+                
+                // Save to localStorage
+                localStorage.setItem('watchNowClicks', clickCount);
+                
+                // Redirect to the ad link
+                window.location.href = 'https://otieu.com/4/9469307';
             });
         });
     </script>
