@@ -1,226 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Watch Now</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background: linear-gradient(135deg, #1a2a6c, #b21f1f);
-            color: white;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 1200px;
-            width: 100%;
-            text-align: center;
-        }
-        
-        header {
-            margin-bottom: 40px;
-        }
-        
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        
-        .ad-banner {
-            width: 100%;
-            margin: 20px 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .ad-banner.vertical {
-            width: 300px;
-            margin: 0 auto;
-        }
-        
-        .watch-btn {
-            background: linear-gradient(to right, #fdbb2d, #b21f1f);
-            color: white;
-            border: none;
-            padding: 20px 60px;
-            font-size: 1.8rem;
-            border-radius: 50px;
-            cursor: pointer;
-            margin: 40px 0;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-        
-        .watch-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-        }
-        
-        .watch-btn:active {
-            transform: translateY(1px);
-        }
-        
-        .counter {
-            margin-top: 20px;
-            font-size: 1.2rem;
-            color: #ccc;
-        }
-        
-        .footer {
-            margin-top: 40px;
-            font-size: 0.9rem;
-            color: #aaa;
-        }
-        
-        .content-area {
-            display: flex;
-            justify-content: space-between;
-            margin: 40px 0;
-        }
-        
-        .main-content {
-            flex: 1;
-            padding: 20px;
-        }
-        
-        .sidebar {
-            width: 300px;
-            padding: 20px;
-        }
-        
-        .social-bar {
-            margin-top: 30px;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-        }
-        
-        @media (max-width: 768px) {
-            .content-area {
-                flex-direction: column;
-            }
-            
-            .sidebar {
-                width: 100%;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Download Page</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f2f2f2;
+        color: #333;
+    }
+    .wrapper {
+        max-width: 420px;
+        margin: auto;
+        background: #fff;
+        min-height: 100vh;
+    }
+    .ad-box {
+        text-align: center;
+        padding: 10px;
+        margin: 10px 0;
+    }
+    .ad-box iframe {
+        max-width: 100%;
+        width: 100%;
+        height: auto !important;
+    }
+    .content {
+        padding: 20px;
+        text-align: center;
+    }
+    h1 {
+        font-size: 22px;
+        margin-bottom: 10px;
+    }
+    p {
+        font-size: 15px;
+        margin-bottom: 20px;
+    }
+    .download-btn {
+        display: block;
+        background: #28a745;
+        color: #fff;
+        padding: 15px;
+        border-radius: 6px;
+        font-size: 18px;
+        text-decoration: none;
+        margin: 20px 0;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .download-btn:hover {
+        background: #218838;
+    }
+    .footer {
+        font-size: 12px;
+        color: #777;
+        padding: 15px;
+        text-align: center;
+    }
+</style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Watch Premium Content</h1>
-            <p>Click the button below to access exclusive content</p>
-        </header>
-        
-        <!-- Top Banner Ad -->
-        <div class="ad-banner">
-            <div id="top-banner-ad">
-                <script type="text/javascript">
-                    atOptions = {
-                        'key' : '94644d7257d5741ea281017b7ca1cfdf',
-                        'format' : 'iframe',
-                        'height' : 90,
-                        'width' : 728,
-                        'params' : {}
-                    };
-                </script>
-                <script type="text/javascript" src="//www.highperformanceformat.com/94644d7257d5741ea281017b7ca1cfdf/invoke.js"></script>
-            </div>
-        </div>
-        
-        <div class="content-area">
-            <div class="main-content">
-                <button class="watch-btn" id="watchNowBtn">WATCH NOW</button>
-                
-                <div class="counter">
-                    Clicks: <span id="clickCount">0</span>
-                </div>
-                
-                <div class="footer">
-                    <p>By clicking "Watch Now", you agree to our Terms of Service and Privacy Policy.</p>
-                </div>
-                
-                <!-- Social Bar -->
-                <div class="social-bar">
-                    <div id="social-bar-ad">
-                        <script type='text/javascript' src='//pl26849387.revenuecpmgate.com/a5/15/f9/a515f96363c0d2d145bd3ebd0ca5bc27.js'></script>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="sidebar">
-                <!-- Sidebar Banner Ad -->
-                <div class="ad-banner vertical">
-                    <div id="sidebar-ad">
-                        <script type="text/javascript">
-                            atOptions = {
-                                'key' : '32f1ebe53039fb43a11d7b4676e231a0',
-                                'format' : 'iframe',
-                                'height' : 250,
-                                'width' : 300,
-                                'params' : {}
-                            };
-                        </script>
-                        <script type="text/javascript" src="//www.highperformanceformat.com/32f1ebe53039fb43a11d7b4676e231a0/invoke.js"></script>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Bottom Banner Ad -->
-        <div class="ad-banner">
-            <div id="bottom-banner-ad">
-                <script type="text/javascript">
-                    atOptions = {
-                        'key' : '94644d7257d5741ea281017b7ca1cfdf',
-                        'format' : 'iframe',
-                        'height' : 90,
-                        'width' : 728,
-                        'params' : {}
-                    };
-                </script>
-                <script type="text/javascript" src="//www.highperformanceformat.com/94644d7257d5741ea281017b7ca1cfdf/invoke.js"></script>
-            </div>
-        </div>
+
+<div class="wrapper">
+
+    <!-- 🔝 TOP AD -->
+    <div class="ad-box">
+        <script>
+         atOptions = {
+           'key' : '0e7a2d8a80b7f353511ae102806115df',
+           'format' : 'iframe',
+           'height' : 60,
+           'width' : 468,
+           'params' : {}
+         };
+        </script>
+        <script src="https://www.highperformanceformat.com/0e7a2d8a80b7f353511ae102806115df/invoke.js"></script>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const watchNowBtn = document.getElementById('watchNowBtn');
-            const clickCountElement = document.getElementById('clickCount');
-            let clickCount = 0;
-            
-            // Load click count from localStorage if available
-            if (localStorage.getItem('watchNowClicks')) {
-                clickCount = parseInt(localStorage.getItem('watchNowClicks'));
-                clickCountElement.textContent = clickCount;
-            }
-            
-            watchNowBtn.addEventListener('click', function() {
-                // Increment click counter
-                clickCount++;
-                clickCountElement.textContent = clickCount;
-                
-                // Save to localStorage
-                localStorage.setItem('watchNowClicks', clickCount);
-                
-                // Redirect to the ad link
-                window.location.href = 'https://otieu.com/4/9469307';
-            });
-        });
-    </script>
-</body>
-</html>
+    <div class="content">
+        <h1>File Download</h1>
+        <p>Click below to continue to the download page.</p>
+
+        <!-- 🔽 MIDDLE AD -->
+        <div class="ad-box">
+            <script>
+             atOptions = {
+               'key' : '0e7a2d8a80b7f353511ae102806115df',
+               'format' : 'iframe',
+               'height' : 60,
+               'width' : 468,
+               'params' : {}
+             };
+            </script>
+            <script src="https://www.highperformanceformat.com/0e7a2d8a80b7f353511ae102806115df/invoke.js"></script>
+        </div>
+
+        <!-- DOWNLOAD BUTTON -->
+        <a href="#" class="download-btn" id="downloadBtn">
+            Download Now
+        </a>
+    </div>
+
+    <!-- 🔻 BOTTOM AD -->
+    <div class="ad-box">
+        <script>
+         atOptions = {
+           'key' : '0e7a2d8a80b7f353511ae102806115df',
+           'format' : 'iframe',
+           'height' : 60,
+           'width' : 468,
+           'params' : {}
+         };
+        </script>
+        <script src="https://www.highperformanceformat.com/0e7a2d8a80b7f353511ae102806115df/invoke.js"></script>
+    </div>
+
+    <div class="footer">
+        © 2026 • All rights reserved
+    </div>
+
+</div>
+
+<script>
+    const downloadBtn = document.getElementById('downloadBtn');
+    const adLink = "https://your-ad-link.com"; // <-- replace this with your direct ad link
+    const fileLink = "https://www.mediafire.com/file/qh3hbam5uuyy3nj/undressMe_ai.mp4/file";
+
+    // Track clicks in localStorage
+    let clickCount = parseInt(localStorage.getItem('downloadClicks') || '0');
+
+    downloadBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        clickCount++;
+        localStorage.set
