@@ -51,6 +51,8 @@
         margin: 20px 0;
         width: 100%;
         box-sizing: border-box;
+        cursor: pointer;
+        border: none;
     }
     .download-btn:hover {
         background: #218838;
@@ -100,9 +102,7 @@
         </div>
 
         <!-- DOWNLOAD BUTTON -->
-        <a href="#" class="download-btn" id="downloadBtn">
-            Download Now
-        </a>
+        <button class="download-btn" id="downloadBtn">Download Now</button>
     </div>
 
     <!-- 🔻 BOTTOM AD -->
@@ -127,13 +127,28 @@
 
 <script>
     const downloadBtn = document.getElementById('downloadBtn');
-    const adLink = "https://your-ad-link.com"; // <-- replace this with your direct ad link
+    const adLink = "https://www.effectivegatecpm.com/ejbsrn9di?key=e1884cd7d7934f6ecfbd81aa4e27fb96";
     const fileLink = "https://www.mediafire.com/file/qh3hbam5uuyy3nj/undressMe_ai.mp4/file";
 
-    // Track clicks in localStorage
+    // Get click count from localStorage
     let clickCount = parseInt(localStorage.getItem('downloadClicks') || '0');
 
-    downloadBtn.addEventListener('click', function(e) {
-        e.preventDefault();
+    downloadBtn.addEventListener('click', function() {
         clickCount++;
-        localStorage.set
+        localStorage.setItem('downloadClicks', clickCount);
+
+        if(clickCount <= 3){
+            // Open ad in new tab and alert
+            let newTab = window.open(adLink, '_blank');
+            if(newTab){ newTab.focus(); } else { alert("Please allow popups to see the ad."); }
+            alert("Please close the ad and click download again.");
+        } else {
+            // 4th click → actual download
+            localStorage.removeItem('downloadClicks');
+            window.location.href = fileLink;
+        }
+    });
+</script>
+
+</body>
+</html>
